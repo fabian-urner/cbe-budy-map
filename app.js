@@ -8,6 +8,8 @@ import { request } from "undici";
 
 import { createClient } from "@supabase/supabase-js";
 
+import serverless from "serverless-http";
+
 config();
 
 const app = express();
@@ -253,3 +255,5 @@ async function updateCookie(cookie) {
     credentials,
   };
 }
+
+export const handler = serverless(app);
