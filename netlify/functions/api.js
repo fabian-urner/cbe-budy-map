@@ -12,18 +12,23 @@ import serverless from "serverless-http";
 
 config();
 
-const app = express();
-app.use(cookieParser());
+const api = express();
 
 const corsOptions = {
   origin: process.env.FRONTEND_ORIGIN,
   credentials: true,
 };
-app.use(cors(corsOptions));
+api.use(cors(corsOptions));
 
-const port = process.env.API_SERVER_PORT || 3003;
+const router = express.Router();
+api.use(cookieParser());
+// const port = process.env.API_SERVER_PORT || 3003;
 
-app.get(process.env.API_PATH.concat("/auth"), async (req, res) => {
+router.get("/test", (req, res) => {
+  return res.send("0.0.2");
+});
+
+router.get("/auth", async (req, res) => {
   // No code in url provided
   if (!req.query.code) {
     res.status(400);
@@ -52,13 +57,14 @@ app.get(process.env.API_PATH.concat("/auth"), async (req, res) => {
     // set Cookie with credentials to remember user next time
     res.cookie(process.env.COOKIE_NAME, cookie, {
       httpOnly: true,
+      sameSite: "none",
     });
   }
 
   return res.send();
 });
 
-app.get(process.env.API_PATH.concat("/positions"), async (req, res) => {
+router.get("/positions", async (req, res) => {
   let cookie = req.cookies.discordCredentials;
 
   // Ensure authentication & authorisation
@@ -137,15 +143,15 @@ app.get(process.env.API_PATH.concat("/positions"), async (req, res) => {
   return res.send(state.users);
 });
 
-app.get(process.env.API_PATH.concat("/logout"), async (req, res) => {
+router.get("/logout", async (req, res) => {
   res.clearCookie(process.env.COOKIE_NAME);
   return res.send("logged out");
 });
 
-app.listen(port, (err) => {
-  if (err) throw err;
-  console.log(`✨ API listening at http://localhost:${port}`);
-});
+// app.listen(port, (err) => {
+//   if (err) throw err;
+//   console.log(`✨ API listening at http://localhost:${port}`);
+// });
 
 async function getDiscordCredentialsByCode(code) {
   if (code) {
@@ -256,4 +262,5 @@ async function updateCookie(cookie) {
   };
 }
 
-export const handler = serverless(app);
+api.use("/api/v1/", router);
+export const handler = serverless(api);
