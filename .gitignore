@@ -2,7 +2,7 @@
 .netlify
 
 # Local Parcel folder
-.parcel-cache
+/.parcel-cache
 /dist
 
 /node_modules
