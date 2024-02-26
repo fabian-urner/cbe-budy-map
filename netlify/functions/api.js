@@ -33,8 +33,6 @@ router.get("/auth", async (req, res) => {
   // Get Discord OAuth2 access_token & refresh_token by provided code (req.query.code)
   const credentials = await getDiscordCredentialsByCode(req.query.code);
 
-  console.log(credentials);
-
   if (credentials.error) {
     res.status(400);
     return res.send("invalid code");
@@ -145,20 +143,7 @@ router.get("/logout", async (req, res) => {
   return res.send("logged out");
 });
 
-// app.listen(port, (err) => {
-//   if (err) throw err;
-//   console.log(`✨ API listening at http://localhost:${port}`);
-// });
-
 async function getDiscordCredentialsByCode(code) {
-  console.log("---------------------------------------");
-  console.log("PARAMETERS:");
-  console.log("---------------------------------------");
-  console.log(process.env.DISCORD_TOKEN_URL);
-  console.log(process.env.DISCORD_CLIENT_ID);
-  console.log(process.env.DISCORD_CLIENT_SECRET);
-  console.log(process.env.FRONTEND_ORIGIN);
-
   if (code) {
     try {
       const tokenResponseData = await request(process.env.DISCORD_TOKEN_URL, {

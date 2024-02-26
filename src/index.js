@@ -244,5 +244,5 @@ btnLogout.addEventListener("click", async () => {
   await fetch(`${API_ORIGIN}/api/v1/logout`, {
     credentials: "include",
   });
-  location.replace(location.origin);
+  location.replace(location.origin + "/login.html");
 });
