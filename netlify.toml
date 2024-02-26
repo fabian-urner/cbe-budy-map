@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npx parcel build src/*.html"
   publish = "dist"
 [functions]
   external_node_modules = ["express"]
