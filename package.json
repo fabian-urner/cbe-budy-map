@@ -6,7 +6,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel '/src/*.html' -p 5500",
-    "build": "parcel build '/src/*.html'",
+    "build": "parcel build --log-level verbose '/src/*.html'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

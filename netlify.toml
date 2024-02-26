@@ -1,3 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+  # Default build command.
+  command = "echo 'default context'"
 [functions]
   external_node_modules = ["express"]
   node_bundler = "esbuild"
