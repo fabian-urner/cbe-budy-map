@@ -14,7 +14,7 @@ const DEFAULT_VIEW = { position: [51.1461386, 10.3], zoom: 6, maxZoom: 20 };
 // -- Maptiler
 const MAPTILER_API_KEY = "pWHtUNbxIERMz5GXuNLb";
 // -- Backend-API
-const API_ORIGIN = "https://cbe-budy-map-be.netlify.app";
+const API_ORIGIN = "https://cbe-budy-map.netlify.app";
 
 // *************
 // Elements
