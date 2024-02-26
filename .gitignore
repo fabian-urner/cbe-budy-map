@@ -5,6 +5,5 @@
 .parcel-cache
 
 /node_modules
-
 .env
 
