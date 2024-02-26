@@ -141,6 +141,7 @@ router.get("/positions", async (req, res) => {
 
 router.get("/logout", async (req, res) => {
   res.clearCookie(process.env.COOKIE_NAME);
+  res.end();
   return res.send("logged out");
 });
 
