@@ -22,11 +22,6 @@ api.use(cors(corsOptions));
 
 const router = express.Router();
 api.use(cookieParser());
-// const port = process.env.API_SERVER_PORT || 3003;
-
-router.get("/test", (req, res) => {
-  return res.send("0.0.2");
-});
 
 router.get("/auth", async (req, res) => {
   // No code in url provided
@@ -37,6 +32,8 @@ router.get("/auth", async (req, res) => {
 
   // Get Discord OAuth2 access_token & refresh_token by provided code (req.query.code)
   const credentials = await getDiscordCredentialsByCode(req.query.code);
+
+  console.log(credentials);
 
   if (credentials.error) {
     res.status(400);
