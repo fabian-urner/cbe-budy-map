@@ -1,6 +1,10 @@
+# Local Netlify folder
+.netlify
+
+# Local Parce folder
+.parcel-cache
+
 /node_modules
 /dist
 .env
 
-# Local Netlify folder
-.netlify
