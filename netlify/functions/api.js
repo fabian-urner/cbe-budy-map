@@ -57,11 +57,10 @@ router.get("/auth", async (req, res) => {
     // set Cookie with credentials to remember user next time
     res.cookie(process.env.COOKIE_NAME, cookie, {
       httpOnly: true,
-      sameSite: "none",
     });
   }
 
-  return res.send();
+  return res.send("logged in");
 });
 
 router.get("/positions", async (req, res) => {
