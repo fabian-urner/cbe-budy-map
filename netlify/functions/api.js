@@ -139,7 +139,7 @@ router.get("/positions", async (req, res) => {
 
 router.get("/logout", async (req, res) => {
   res.clearCookie(process.env.COOKIE_NAME);
-  res.end();
+  //res.end();
   return res.send("logged out");
 });
 
@@ -252,5 +252,12 @@ async function updateCookie(cookie) {
   };
 }
 
-api.use("/api/v1/", router);
+api.use(process.env.API_PATH, router);
+
+api.listen(process.env.API_PORT, () => {
+  console.log(
+    "✨ Server is running on http://localhost:" + process.env.API_PORT
+  );
+});
+
 export const handler = serverless(api);

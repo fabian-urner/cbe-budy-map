@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "source": "src/index.html",
+  "source": "./src/index.html",
   "scripts": {
-    "start": "parcel '/src/*.html' -p 5500",
-    "build": "parcel build /src/*.html",
+    "start": "parcel 'src/*.html' -p 5500",
+    "build": "parcel build 'src/*.html'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

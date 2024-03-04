@@ -48,16 +48,7 @@
 
 <body>
   <button id="login"><i class="fa-brands fa-discord"></i> login with discord</button>
-  <script>
-    "use strict";
-
-    const btnLogin = document.getElementById("login");
-    btnLogin.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("click")
-      window.location.replace("https://discord.com/oauth2/authorize?client_id=1204724850665594890&response_type=code&redirect_uri=https%3A%2F%2Fcbemap.urner.dev&scope=identify+guilds");
-    });
-  </script>
+  <script src="login.js" type="module"></script>
 </body>
 
 </html>

@@ -9,12 +9,10 @@ import "leaflet/dist/leaflet.css";
 // Configuration
 // *************
 
+config();
+
 // -- Leaflet
 const DEFAULT_VIEW = { position: [51.1461386, 10.3], zoom: 6, maxZoom: 20 };
-// -- Maptiler
-const MAPTILER_API_KEY = "pWHtUNbxIERMz5GXuNLb";
-// -- Backend-API
-const API_ORIGIN = "https://cbemap.urner.dev";
 
 // *************
 // Elements
@@ -31,7 +29,7 @@ const btnLogout = document.getElementById("logout");
 // Define and initiate Map
 const map = L.map("map").setView(DEFAULT_VIEW.position, DEFAULT_VIEW.zoom);
 L.tileLayer(
-  `https://api.maptiler.com/maps/dataviz-light/{z}/{x}/{y}.png?key=${MAPTILER_API_KEY}`,
+  `https://api.maptiler.com/maps/dataviz-light/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
   {
     maxZoom: DEFAULT_VIEW.maxZoom,
     attribution:
@@ -187,9 +185,12 @@ function getTemplateByUser(user) {
 }
 
 async function loadMapData() {
-  state.users = await fetch(`${API_ORIGIN}/api/v1/positions`, {
-    credentials: "include",
-  })
+  state.users = await fetch(
+    `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/positions`,
+    {
+      credentials: "include",
+    }
+  )
     .then((res) => {
       // if (!res.ok) location.replace(location.origin + "/login.html"); // Redirecting user to login-page if response is not 2XX
 
@@ -216,9 +217,12 @@ window.onload = async () => {
   const code = fragment.get("code");
 
   if (code) {
-    await fetch(`${API_ORIGIN}/api/v1/auth?code=${code}`, {
-      credentials: "include",
-    });
+    await fetch(
+      `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/auth?code=${code}`,
+      {
+        credentials: "include",
+      }
+    );
     location.replace(location.origin);
   }
 
@@ -241,8 +245,11 @@ window.addEventListener("keydown", (e) => {
 });
 
 btnLogout.addEventListener("click", async () => {
-  await fetch(`${API_ORIGIN}/api/v1/logout`, {
-    credentials: "include",
-  });
+  await fetch(
+    `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/logout`,
+    {
+      credentials: "include",
+    }
+  );
   location.replace(location.origin + "/login.html");
 });
