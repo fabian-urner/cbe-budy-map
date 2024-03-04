@@ -192,7 +192,7 @@ async function loadMapData() {
     }
   )
     .then((res) => {
-      // if (!res.ok) location.replace(location.origin + "/login.html"); // Redirecting user to login-page if response is not 2XX
+      if (!res.ok) location.replace(location.origin + "/login.html"); // Redirecting user to login-page if response is not 2XX
 
       return res.json();
     })
