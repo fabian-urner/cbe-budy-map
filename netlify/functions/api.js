@@ -254,9 +254,9 @@ async function updateCookie(cookie) {
 
 api.use(process.env.API_PATH, router);
 
-api.listen(process.env.API_PORT, () => {
+api.listen(process.env.DEVSERVER_API_PORT, () => {
   console.log(
-    "✨ Server is running on http://localhost:" + process.env.API_PORT
+    "✨ Server is running on http://localhost:" + process.env.DEVSERVER_API_PORT
   );
 });
 

@@ -186,7 +186,7 @@ function getTemplateByUser(user) {
 
 async function loadMapData() {
   state.users = await fetch(
-    `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/positions`,
+    `${process.env.API_ORIGIN}${process.env.API_PATH}/positions`,
     {
       credentials: "include",
     }
@@ -218,7 +218,7 @@ window.onload = async () => {
 
   if (code) {
     await fetch(
-      `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/auth?code=${code}`,
+      `${process.env.API_ORIGIN}${process.env.API_PATH}/auth?code=${code}`,
       {
         credentials: "include",
       }
@@ -245,11 +245,8 @@ window.addEventListener("keydown", (e) => {
 });
 
 btnLogout.addEventListener("click", async () => {
-  await fetch(
-    `${process.env.API_ORIGIN}:${process.env.API_PORT}${process.env.API_PATH}/logout`,
-    {
-      credentials: "include",
-    }
-  );
+  await fetch(`${process.env.API_ORIGIN}${process.env.API_PATH}/logout`, {
+    credentials: "include",
+  });
   location.replace(location.origin + "/login.html");
 });
